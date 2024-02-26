@@ -4,13 +4,16 @@ import 'package:getx_clean_architecture/features/template/business/entities/temp
 import 'package:getx_clean_architecture/features/template/business/repositories/template_repository.dart';
 import 'package:dartz/dartz.dart';
 
+import '../entities/pokemon_entity.dart';
+import '../repositories/pokemon_repository.dart';
 
-class GetTemplate {
-  final TemplateRepository templateRepository;
 
-  GetTemplate({required this.templateRepository});
+class GetPokemon {
+  final PokemonRepository repository;
 
-  Future<Either<Failure, TemplateEntity>> call({required TemplateParams templateParams}) async{
-    return await templateRepository.getTemplate(templateParams: templateParams);
+  GetPokemon({required this.repository});
+
+  Future<Either<Failure, PokemonEntity>> call({required PokemonParams params}) async{
+    return await repository.getPokemon(params: params);
   }
 }

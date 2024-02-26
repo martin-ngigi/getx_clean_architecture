@@ -1,9 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../../../../../core/errors/failure.dart';
 
 class PokemonImageWidget extends StatelessWidget {
   const PokemonImageWidget({

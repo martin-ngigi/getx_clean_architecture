@@ -4,38 +4,49 @@ import 'package:getx_clean_architecture/core/errors/exceptions.dart';
 import 'package:getx_clean_architecture/features/template/data/models/template_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class TemplateLocalDataSource {
-  Future<void> cacheTemplate({required TemplateModel? templateToCache});
-  Future<TemplateModel> getLastTemplate();
+import '../models/pokemon_model.dart';
+
+abstract class PokemonLocalDataSource {
+  Future<void>? cachePokemon(PokemonModel? pokemonToCache);
+
+  Future<PokemonModel> getLastPokemon();
 }
 
-const cachedTemplate = 'CACHED_TEMPLATE';
+const cachedPokemon = 'CACHED_POKEMON';
 
-class TemplateLocalDataSourceImp implements TemplateLocalDataSource{
+class PokemonLocalDataSourceImp implements PokemonLocalDataSource{
   final SharedPreferences sharedPreferences;
 
-  TemplateLocalDataSourceImp({required this.sharedPreferences});
+  PokemonLocalDataSourceImp({required this.sharedPreferences});
+
 
   @override
-  Future<void> cacheTemplate({required TemplateModel? templateToCache}) async {
-    if(templateToCache != null){
-      sharedPreferences.setString(cachedTemplate, json.encode(templateToCache.toJson()));
-    }
-    else {
+  Future<void>? cachePokemon(PokemonModel? pokemonToCache) async {
+
+    if (pokemonToCache != null) {
+      sharedPreferences.setString(
+        cachedPokemon,
+        json.encode(
+          pokemonToCache.toJson(),
+        ),
+      );
+    } else {
       throw CacheException();
     }
   }
 
+
   @override
-  Future<TemplateModel> getLastTemplate() {
-    final jsonString =sharedPreferences.getString(cachedTemplate);
+  Future<PokemonModel> getLastPokemon() {
+    final jsonString =sharedPreferences.getString(cachedPokemon);
 
     if(jsonString != null){
-      return Future.value(TemplateModel.fromJson(json: json.decode(jsonString))); ///import json convert
+      return Future.value(PokemonModel.fromJson(json.decode(jsonString))); ///import json convert
     }
     else {
       throw CacheException();
     }
   }
+
 
 }

@@ -9,11 +9,11 @@ class PokemonModel extends PokemonEntity {
     required SpritesModel sprites,
     required List<TypesModel> types,
   }) : super(
-          name: name,
-          id: id,
-          sprites: sprites,
-          types: types,
-        );
+    name: name,
+    id: id,
+    sprites: sprites,
+    types: types,
+  );
 
   factory PokemonModel.fromJson(Map<String, dynamic> json) {
     return PokemonModel(

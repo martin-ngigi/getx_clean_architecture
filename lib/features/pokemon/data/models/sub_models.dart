@@ -1,6 +1,7 @@
 import '../../../../../core/constants/constants.dart';
 import '../../business/entities/sub_entites.dart';
 
+
 //! Sprites
 class SpritesModel extends SpritesEntity {
   const SpritesModel({
@@ -43,9 +44,9 @@ class OfficialArtworkModel extends OfficialArtworkEntity {
     required String frontDefault,
     required String frontShiny,
   }) : super(
-          frontDefault: frontDefault,
-          frontShiny: frontShiny,
-        );
+    frontDefault: frontDefault,
+    frontShiny: frontShiny,
+  );
 
   static OfficialArtworkModel fromJson(Map<String, dynamic> json) {
     return OfficialArtworkModel(
@@ -104,4 +105,6 @@ class TypeModel extends TypeEntity {
     };
   }
 }
+
+
 
